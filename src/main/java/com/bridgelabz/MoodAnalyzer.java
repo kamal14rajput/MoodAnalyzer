@@ -18,12 +18,16 @@ public class MoodAnalyzer {
 		this.message = message;
 	}
 
-	public String exceptionAnalyseMood() {
+	
+	public String exceptionAnalyseMood() throws MoodAnalysisException {
 		try {
+			if (message.length() == 0)
+                throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.ENTERED_EMPTY,"please enter proper message");
 			if (message.contains("sad"))
 				return "SAD";
 			return "HAPPY";
-		} catch (NullPointerException e) {
+		} 
+		catch (NullPointerException e) {
 			return "HAPPY";
 		}
 	}
